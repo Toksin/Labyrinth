@@ -3,6 +3,10 @@
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
 /[Ll]ibrary/
+/LabyrinthGame/Library
+/LabyrinthGame/Logs
+/LabyrinthGame/ProjectSettings
+/LabyrinthGame/Temp
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
