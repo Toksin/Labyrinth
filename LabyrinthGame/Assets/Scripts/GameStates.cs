@@ -8,6 +8,8 @@ public class GameStates : MonoBehaviour
 
     GameData gameData;
 
+    [SerializeField] GameOverUI gameOverUI;
+
   private enum State
   {
         GamePlaying,
@@ -43,6 +45,8 @@ public class GameStates : MonoBehaviour
                 break;
 
             case State.GameOver:
+                Cursor.visible = true;
+                gameOverUI.Show();
                 break;
 
             case State.KeysCollected:
@@ -71,6 +75,11 @@ public class GameStates : MonoBehaviour
     public void GameWin()
     {
         state = State.GameEnd;
+    }
+
+    public void GameOver()
+    {
+        state = State.GameOver;
     }
 
 }
