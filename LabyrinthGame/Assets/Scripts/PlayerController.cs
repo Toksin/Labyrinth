@@ -17,8 +17,7 @@ public class PlayerController : MonoBehaviour
  
 
     private void Start()
-    {
-        GameInput.Instance.OnInteract += GameInput_OnInteract;       
+    {            
         characterController = GetComponent<CharacterController>();
         gameInput = GameInput.Instance;
         
@@ -58,10 +57,7 @@ public class PlayerController : MonoBehaviour
         isWalking = moveDirection != Vector3.zero;
     }
 
-    private void GameInput_OnInteract(object sender, EventArgs e)
-    {
-        Debug.Log("E pressed");
-    }
+  
 
     private bool IsWalking()
     {
