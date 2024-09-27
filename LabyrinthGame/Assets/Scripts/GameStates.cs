@@ -8,9 +8,12 @@ public class GameStates : MonoBehaviour
 
     GameData gameData;
 
-    [SerializeField] GameOverUI gameOverUI;
-    [SerializeField] GameWinUI gameWinUI;
-    [SerializeField] TimeTracker timeTracker;
+    [SerializeField] private GameOverUI gameOverUI;
+    [SerializeField] private GameWinUI gameWinUI;
+    [SerializeField] private TimeTracker timeTracker;
+    [SerializeField] private GamePauseUI gamePauseUI;
+
+    private bool isGamePaused = false;
 
   private enum State
   {
@@ -27,6 +30,16 @@ public class GameStates : MonoBehaviour
     {
         Instance = this;
         state = State.GamePlaying;        
+    }
+
+    private void Start()
+    {
+        GameInput.Instance.OnPauseActivate += GameInpu_OnPauseActivate;
+    }
+
+    private void GameInpu_OnPauseActivate(object sender, System.EventArgs e)
+    {
+        TogglePauseGame();
     }
 
     private void Update()
@@ -85,6 +98,22 @@ public class GameStates : MonoBehaviour
     public void GameOver()
     {
         state = State.GameOver;
+    }
+
+    public void TogglePauseGame()
+    {
+        isGamePaused = !isGamePaused;
+        if(isGamePaused)
+        {
+            gamePauseUI.Show();
+            Time.timeScale = 0f;
+        }
+        else
+        {
+            gamePauseUI.Hide();
+            Time.timeScale = 1f;
+        }
+        
     }
 
 }

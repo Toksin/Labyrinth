@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameInput : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class GameInput : MonoBehaviour
     }
 
     public event EventHandler OnInteract;
+    public event EventHandler OnPauseActivate;
 
     private PlayerInputActions playerInputActions;
 
@@ -31,6 +33,7 @@ public class GameInput : MonoBehaviour
         playerInputActions = new PlayerInputActions();
         
         playerInputActions.Player.Interact.performed += Interact_performed;
+        playerInputActions.Player.Pause.performed += Pause_performed;
         Cursor.visible = false;
     }
 
@@ -46,6 +49,11 @@ public class GameInput : MonoBehaviour
     private void Interact_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
     {       
         OnInteract?.Invoke(this, EventArgs.Empty);        
+    }
+
+    private void Pause_performed(UnityEngine.InputSystem.InputAction.CallbackContext obj)
+    {
+        OnPauseActivate?.Invoke(this, EventArgs.Empty);
     }
 
     public Vector2 GetMovementVectorNormalized()
