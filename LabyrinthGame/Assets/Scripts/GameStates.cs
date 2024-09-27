@@ -9,6 +9,8 @@ public class GameStates : MonoBehaviour
     GameData gameData;
 
     [SerializeField] GameOverUI gameOverUI;
+    [SerializeField] GameWinUI gameWinUI;
+    [SerializeField] TimeTracker timeTracker;
 
   private enum State
   {
@@ -34,8 +36,9 @@ public class GameStates : MonoBehaviour
         switch (state)
         {
             case State.GamePlaying:
-                
-                if(gameData.totalKeys >= 5)
+
+                timeTracker.StartTiming();
+                if (gameData.totalKeys >= 5)
                 {
                     state = State.KeysCollected;
                 }
@@ -45,6 +48,7 @@ public class GameStates : MonoBehaviour
                 break;
 
             case State.GameOver:
+                timeTracker.StopTiming();
                 Cursor.visible = true;
                 gameOverUI.Show();
                 break;
@@ -53,7 +57,8 @@ public class GameStates : MonoBehaviour
                 KeysCollected();
                 break;
             case State.GameEnd:
-                Debug.Log("Win");
+                timeTracker.StopTiming();
+                gameWinUI.Show();
                 break;
         }
     }
