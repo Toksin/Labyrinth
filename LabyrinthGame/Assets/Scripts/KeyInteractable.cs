@@ -4,17 +4,17 @@ using UnityEngine;
 
 public class KeyInteractable : MonoBehaviour
 {
-    GameData gameData;
+    GameData gameData;     
 
-    private void Awake()
+    public void Update()
     {
         gameData = SaveSystem.Load();
     }
-
     public void Interact()
     {
         gameData.totalKeys += 1;
         SaveSystem.Save(gameData);
         Debug.Log(gameData.totalKeys);
+        gameObject.SetActive(false);
     }
 }

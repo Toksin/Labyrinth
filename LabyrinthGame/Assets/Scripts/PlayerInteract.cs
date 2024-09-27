@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInteract : MonoBehaviour
 {
@@ -25,12 +26,11 @@ public class PlayerInteract : MonoBehaviour
         {
            if(collider.TryGetComponent(out KeyInteractable keyInteractable))
            {               
-                keyInteractable.Interact();
-           }
+                keyInteractable.Interact();               
+            }
 
            if(collider.TryGetComponent(out DoorInteractable doorInteractable))
-           {
-                Debug.Log("Door find");
+           {               
                 doorInteractable.Interact();
            }
         }
@@ -47,7 +47,7 @@ public class PlayerInteract : MonoBehaviour
         {
             if (collider.TryGetComponent(out KeyInteractable key))
             {
-                keyInteractable = key;
+                keyInteractable = key;                
             }
 
             if (collider.TryGetComponent(out DoorInteractable door))

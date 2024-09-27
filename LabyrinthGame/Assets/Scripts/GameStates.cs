@@ -22,7 +22,7 @@ public class GameStates : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        state = State.GamePlaying;
+        state = State.GamePlaying;        
     }
 
     private void Update()
